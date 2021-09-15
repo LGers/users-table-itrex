@@ -35,7 +35,7 @@ function App() {
         return data
     }
     initialState.users = users
-    initialState.sortedUsers = users
+    initialState.findUsers = users
     initialState.lastPage = getLastPage(users.length, initialState.usersPerPage)
     console.log('initialState', initialState)
 
@@ -46,10 +46,12 @@ function App() {
 
 
     const usersOnCurrentPage = getUsersOnCurrentPage(state.currentUsersPage,
-        state.users,
-        state.usersPerPage)
+        state.users, //findUsers,
+        state.usersPerPage,
+        // state.searchState
+    )
     // console.log('state.currentUsersPage', state.currentUsersPage)
-    console.log('usersOnCurrentPage', usersOnCurrentPage)
+    // console.log('usersOnCurrentPage', usersOnCurrentPage)
     let statesList = getStatesList(users)
 
 
@@ -113,6 +115,9 @@ function App() {
             case 'phone' :
                 sortInState('phone')
                 break
+            case 'email' :
+                sortInState('email')
+                break
             case 'state' :
                 sortInState('state')
                 break
@@ -123,13 +128,15 @@ function App() {
 
     const filterByState = (field) => {
         if (field === 'SelectNone') {
+            debugger
             setState({
                 ...state, users: state.users = users,
-                searchState: state.searchState = ''
+                searchState: state.searchState = '',
+                findUsers: state.findUsers=users
             })
         } else {
             let result = []
-            state.users.forEach(el => {
+            users.forEach(el => {
                 if (el.adress.state === field) result.push(el)
             })
             setState({

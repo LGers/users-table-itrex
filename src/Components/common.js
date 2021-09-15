@@ -9,20 +9,29 @@ export const getLastPage =(usersQtty,usersPerPage)=>{
     }
 }
 
-export const getUsersOnCurrentPage = (pageNumber, users, usersPerPage) => {
-    // console.log('users qtty', users.length)
+export const getUsersOnCurrentPage = (pageNumber, users, usersPerPage, userState) => {
 
+    // if (users.length <= usersPerPage && userState === '') return users
     if (users.length <= usersPerPage) return users
 
-    //let lastPage = 1
     let usersOnCurrentPage = []
+    // let usersSelectByState = users
+    /*if (userState !== '') {
+        users.forEach(user => {
+            if (user.adress.state === userState){
+                usersSelectByState.push(user)
+            }
+        })
+    }*/
 
+    // let lastPage = getLastPage(users.length, usersPerPage)
     let lastPage = getLastPage(users.length, usersPerPage)
 
     // debugger
     //Make users by users per page
     if (pageNumber !== lastPage) {
         for (let i = (pageNumber - 1) * usersPerPage; i < (pageNumber) * usersPerPage; i++) {
+            // usersOnCurrentPage.push(users[i])
             usersOnCurrentPage.push(users[i])
         }
         return usersOnCurrentPage

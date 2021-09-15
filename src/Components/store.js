@@ -15,7 +15,7 @@ export let initialState = {
             "description": "-",
             "uniqueId": '0'
         },
-    sortedUsers:[],
+    findUsers:[],
     users: [
         {
             "id": 1,
@@ -46,7 +46,7 @@ export let initialState = {
     lastPage: 1,
     currentUsersPage: 1,
     currentSearch: '',
-    filterStates: '',
+    // filterStates: '',
     sortBy: '', //id, FirstName, LastName,Email, phone, state
     sortASC: true,
     searchString:'',
