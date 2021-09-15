@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/users-table-itrex/static/css/main.0bfb4eb0.chunk.css",
+    "main.js": "/users-table-itrex/static/js/main.523faf5d.chunk.js",
+    "main.js.map": "/users-table-itrex/static/js/main.523faf5d.chunk.js.map",
+    "runtime-main.js": "/users-table-itrex/static/js/runtime-main.e542a5da.js",
+    "runtime-main.js.map": "/users-table-itrex/static/js/runtime-main.e542a5da.js.map",
+    "static/js/2.f0a4ff2a.chunk.js": "/users-table-itrex/static/js/2.f0a4ff2a.chunk.js",
+    "static/js/2.f0a4ff2a.chunk.js.map": "/users-table-itrex/static/js/2.f0a4ff2a.chunk.js.map",
+    "static/js/3.252ff032.chunk.js": "/users-table-itrex/static/js/3.252ff032.chunk.js",
+    "static/js/3.252ff032.chunk.js.map": "/users-table-itrex/static/js/3.252ff032.chunk.js.map",
+    "index.html": "/users-table-itrex/index.html",
+    "static/css/main.0bfb4eb0.chunk.css.map": "/users-table-itrex/static/css/main.0bfb4eb0.chunk.css.map",
+    "static/js/2.f0a4ff2a.chunk.js.LICENSE.txt": "/users-table-itrex/static/js/2.f0a4ff2a.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.e542a5da.js",
+    "static/js/2.f0a4ff2a.chunk.js",
+    "static/css/main.0bfb4eb0.chunk.css",
+    "static/js/main.523faf5d.chunk.js"
+  ]
+}
