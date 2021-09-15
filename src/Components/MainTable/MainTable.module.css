@@ -1,0 +1,45 @@
+.MainTable {
+    display: grid;
+    grid-template-columns: 1fr 5fr 5fr 6fr 5fr 3fr;
+    align-items: center;
+    font-size: 15px;
+}
+.MainTableActive {
+    background-color: #565b60
+}
+
+.MainTable tr {
+    padding: 3px;
+    margin: 3px;
+}
+.MainTable div {
+    margin: 1px;
+    padding:5px 10px 5px 10px;
+    border:solid 1px #565b60;
+    min-width: 100px;
+    min-height: 20px;
+}
+.MainTable div p{
+    margin: 0;
+    cursor: pointer;
+    padding: 5px;
+}
+.MainTable div p span {
+    text-align: right;
+    float: right;
+    font-weight: bold;
+    /*font-size: 20px;*/
+}
+
+div .userId {
+    min-width: 20px;
+}
+
+div .userId span {
+    text-align: right;
+    float: right;
+
+}
+.sort {
+    padding: 5px;
+}

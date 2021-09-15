@@ -1,0 +1,23 @@
+.SearchContainer {
+    display: grid;
+    grid-template-columns: 2fr  1fr;
+    grid-gap: 50px;
+    padding-bottom: 15px;
+    font-size: 18px;
+}
+.NameSearch{
+    text-align: left;
+    background-color: lightsteelblue;
+    color: black;
+    max-width: 250px;
+}
+
+.StateFilter{
+    float: right;
+    margin-right: 80px;
+    background-color: gray;
+    color: black;
+    max-width: 250px;
+    background-color: lightsteelblue;
+
+}

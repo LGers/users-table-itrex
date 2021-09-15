@@ -1,0 +1,108 @@
+.App {
+  text-align: center;
+}
+
+
+.App-header {
+  background-color: #282c34;
+  /*min-height: 100vh;*/
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+
+.App-header p{
+  margin: auto;
+  padding: 20px;
+  font-size: 25px;
+}
+.App-link {
+  color: #61dafb;
+}
+
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.MainContent {
+  background-color: #282c34;
+  color: white;
+  padding: 10px;
+}
+
+.ProfileInfo{
+  background-color: #282c34;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 15px;
+
+}
+
+.ProfileInfo p{
+  padding: 3px;
+  margin: 3px;
+}
+
+.MainTable {
+  display: grid;
+  grid-template-columns: 1fr 5fr 5fr 6fr 5fr 3fr;
+  align-items: center;
+  font-size: 15px;
+}
+.MainTableActive {
+  background-color: #565b60
+}
+
+.MainTable tr {
+  padding: 3px;
+  margin: 3px;
+}
+.MainTable div {
+  margin: 1px;
+  padding:5px 10px 5px 10px;
+  border:solid 1px #565b60;
+  min-width: 100px;
+  min-height: 20px;
+}
+div .userId {
+  min-width: 20px;
+}
+.Paginator {
+  padding-top: 10px;
+  text-align: right;
+  margin-right: 20px;
+}
+.PaginatorActive {
+  font-weight: bold;
+  background-color: #565b60
+}
+.Paginator div {
+  display: inline-block;
+  padding: 2px 5px;
+  border: solid 1px gray;
+  margin: 1px;
+  text-align: center;
+  cursor:pointer;
+}
+.Paginator :hover {
+  background-color: #565b60;
+}
+.prevBtn {
+  border-radius: 7px 0px 0px 7px;
+  width: 70px;
+}
+
+.nextBtn {
+  border-radius: 0px 7px 7px 0px;
+  width: 70px;
+}
