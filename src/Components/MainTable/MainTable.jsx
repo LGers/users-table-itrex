@@ -8,7 +8,7 @@ const UserRow = (props) => {
         }}>
             <div id = {props.uniqueId} className={st.MainTable} >
                 <div className={st.userId}>{props.id}</div>
-                <div>{props.uniqueId} - {props.firstName}</div>
+                <div>{props.firstName}</div>
                 <div>{props.lastName}</div>
                 <div>{props.email}</div>
                 <div>{props.phone}</div>
@@ -19,6 +19,7 @@ const UserRow = (props) => {
 }
 
 const MainTable = (props) => {
+
     const usersList = props.users.map((u, index) => (
         <UserRow key={index}
                  id={u.id}
@@ -41,6 +42,7 @@ const MainTable = (props) => {
             return <span>↓</span>
         } else return <span>↑</span>
     }
+
     return (
         <div>
             <div className={st.MainTable}>

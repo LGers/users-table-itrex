@@ -47,8 +47,27 @@ export const getStatesList =(users)=>{
 }
 
 export const sortByFieldASC = (field) => {
-    return (a, b) => a[field] > b[field] ? 1 : -1;
+    if (field!=='state') {
+        return (a, b) => {
+            if (a[field]===b[field]) return 0
+            return a[field] > b[field] ? 1 : -1;
+        }
+    }
+    return (a, b) => {
+        if (a['adress']['state']===b['adress']['state']) return 0
+        return a['adress']['state'] > b['adress']['state'] ? 1 : -1;
+    }
 }
+
 export const sortByFieldDESC = (field) => {
-    return (a, b) => a[field] > b[field] ? -1 : 1;
+    if (field!=='state') {
+        return (a, b) => {
+            if (a[field]===b[field]) return 0
+            return a[field] < b[field] ? 1 : -1;
+        }
+    }
+    return (a, b) => {
+        if (a['adress']['state']===b['adress']['state']) return 0
+        return a['adress']['state'] < b['adress']['state'] ? 1 : -1;
+    }
 }

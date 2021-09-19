@@ -72,8 +72,7 @@ function App() {
         }
     }
 
-    const sortInState = (field) => {
-
+    const sortTableBy = (field) => {
         if (state.sortBy !== field) {
             state.findUsers.sort(sortByFieldASC(field))
         } else {
@@ -82,37 +81,12 @@ function App() {
             } else {
                 state.findUsers.sort(sortByFieldDESC(field))
             }
-
         }
         setState({
             ...state, users: state.findUsers = usersOnCurrentPage(state.currentUsersPage),
             sortASC: !state.sortASC,
             sortBy: state.sortBy = field
         })
-    }
-    const sortTableBy = (sortby) => {
-        switch (sortby) {
-            case 'id' :
-                sortInState('id')
-                break
-            case 'firstName' :
-                sortInState('firstName')
-                break
-            case 'lastName' :
-                sortInState('lastName')
-                break
-            case 'phone' :
-                sortInState('phone')
-                break
-            case 'email' :
-                sortInState('email')
-                break
-            case 'state' :
-                sortInState('state')
-                break
-            default:
-                return 1
-        }
     }
 
 
@@ -143,64 +117,81 @@ function App() {
             return result
         }
 
+        let resultUsers = []
+        let lastPage = 1
         if (searchString !== '') {
-            let result = []
 
             for (let i = 0; i < users.length; i++) {
                 let user = {...users[i]}
                 delete user.uniqueId
-                let isStringInclude = objectToArray(user).some(el => el.toString().toLowerCase().includes(searchString.toLowerCase()))
+                let isStringInclude =
+                    objectToArray(user).some(el => el.toString().toLowerCase().includes(searchString.toLowerCase()))
 
-                if (isStringInclude && state.searchString === '') {
-                    result.push(users[i])
+                if (isStringInclude) {
+                    resultUsers.push(users[i])
                 }
             }
-
-            let lastPage = getLastPage(result.length, state.usersPerPage)
-            setState({
-                ...state,
-                findUsers: state.findUsers = result,
-                users: state.users = usersOnCurrentPage(state.currentUsersPage),
-                lastPage: state.lastPage = lastPage
-            })
         } else {
-            let lastPage = getLastPage(state.findUsers.length, state.usersPerPage)
-            setState({...state, findUsers: state.findUsers = users, lastPage: state.lastPage = lastPage})
+            resultUsers = users
         }
+
+        if (state.searchState === 'SelectNone') {
+            lastPage = getLastPage(resultUsers.length, state.usersPerPage)
+        } else {
+            lastPage = getLastPage(resultUsers.filter((el)=>el.adress.state === state.searchState).length, state.usersPerPage)
+        }
+
+        return [resultUsers, lastPage]
     }
 
     const filterByState = (stateName) => {
+
+        let resultUsers = []
+        let searchState = 'SelectNone'
         let lastPage = getLastPage(state.findUsers.length, state.usersPerPage)
+
         if (stateName === 'SelectNone') {
-            setState({
-                ...state,
-                users: state.users = getUsersOnCurrentPage(state.currentUsersPage, state.findUsers, state.usersPerPage, stateName),
-                searchState: state.searchState = 'SelectNone',
-                lastPage: state.lastPage = lastPage
-            })
+            resultUsers = getUsersOnCurrentPage(state.currentUsersPage, state.findUsers, state.usersPerPage, stateName)
         } else {
             let result = []
             state.findUsers.forEach(el => {
                 if (el.adress.state === stateName) result.push(el)
             })
 
+            resultUsers = getUsersOnCurrentPage(state.currentUsersPage, result, state.usersPerPage, stateName)
+            searchState = stateName
             lastPage = getLastPage(result.length, state.usersPerPage)
-            setState({
-                ...state, users: state.users = result,
-                searchState: state.searchState = stateName,
-                lastPage: state.lastPage = lastPage
-            })
         }
+
+        return [resultUsers, lastPage, searchState]
     }
 
     const search = (searchValue, searchBy) => {
+
+        let findUsers = state.findUsers
+        let usersOnCurrentPage = []
+        let lastPage = state.lastPage
+        let searchString = state.searchString
+        let searchState = state.searchState
+
         if (searchBy === 'byString') {
-            searchByString(searchValue)
+            [findUsers, lastPage] = searchByString(searchValue)
+            usersOnCurrentPage = getUsersOnCurrentPage(1, findUsers, state.usersPerPage, searchState)
+            searchString = searchValue
         }
 
         if (searchBy === 'byState') {
-            filterByState(searchValue)
+            [usersOnCurrentPage, lastPage, searchState] = filterByState(searchValue)
         }
+
+        setState({
+            ...state,
+            users: state.users = usersOnCurrentPage,
+            findUsers: state.findUsers = findUsers,
+            lastPage: state.lastPage = lastPage,
+            searchString: state.searchString = searchString,
+            searchState: state.searchState = searchState
+        })
     }
 
     const showProfile = (userId) => {
@@ -219,6 +210,7 @@ function App() {
                              filterByState={filterByState}
                              searchBy={searchByString}
                              search={search}
+                             searchState={state.searchState}
                 />
 
                 <MainTable
@@ -228,9 +220,8 @@ function App() {
                     showProfile={showProfile}
                 />
                 <Paginator
-                    totalUsersCount={state.findUsers.length}
-                    pageSize={state.usersPerPage}
                     currentUsersPage={state.currentUsersPage}
+                    pagesCount={state.lastPage}
                     selectCurrentPage={selectCurrentPage}
                     onDecrement={onDecrement}
                     onIncrement={onIncrement}
