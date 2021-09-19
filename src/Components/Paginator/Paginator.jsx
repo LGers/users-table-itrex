@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React from "react";
 import st from "./Paginator.module.css";
 
 const Paginator = ({
@@ -11,7 +11,6 @@ const Paginator = ({
         pages.push(i);
     }
 
-    console.log('currentUsersPage', currentUsersPage)
     const onPageChanged = (p) => {
         selectCurrentPage(p)
     }
@@ -29,8 +28,8 @@ const Paginator = ({
                             className={(currentUsersPage === p) && st.PaginatorActive}
                             onClick={(e) => {
                                 onPageChanged(p);
-                            }}
-                >{p}</div>
+                            }}>{p}
+                </div>
             })}
 
             <div className={st.nextBtn}

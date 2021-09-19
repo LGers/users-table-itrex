@@ -1,7 +1,7 @@
 import React from "react";
 
 const ProfileInfo = (props) => {
-    // debugger
+
     return (
         <div className="ProfileInfo">
             <p>Profile info</p>
@@ -14,4 +14,5 @@ const ProfileInfo = (props) => {
         </div>
     )
 }
+
 export default ProfileInfo;

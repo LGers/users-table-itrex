@@ -46,9 +46,8 @@ export let initialState = {
     lastPage: 1,
     currentUsersPage: 1,
     currentSearch: '',
-    // filterStates: '',
-    sortBy: '', //id, FirstName, LastName,Email, phone, state
+    sortBy: '',
     sortASC: true,
     searchString:'',
-    searchState:''
+    searchState:'SelectNone'
 }

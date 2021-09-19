@@ -4,12 +4,6 @@ import st from "./MainTable.module.css"
 const UserRow = (props) => {
     return (
         <div  onClick={(e)=>{
-            // console.log(e.target.parentElement.firstChild.innerText)
-            // console.log(e.target.parentElement.id)
-            // console.log(e)
-            // console.log('e.target.id', e.target.id)
-            // console.log('e.nativeEvent.pointerId', e.nativeEvent.pointerId)
-            // console.log('e.target.id', e.target)
             props.showProfile(e.target.parentElement.id)
         }}>
             <div id = {props.uniqueId} className={st.MainTable} >
