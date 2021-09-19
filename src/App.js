@@ -58,7 +58,6 @@ function App() {
             setState({
                 ...state,
                 currentUsersPage: state.currentUsersPage - 1,
-                // users: state.users = usersOnCurrentPage
                 users: state.users = usersOnCurrentPage(state.currentUsersPage - 1)
             })
         }
